@@ -6,9 +6,10 @@
 
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title></title>
+    <title>PenTester</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/brownTheme.css" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile.structure-1.3.1.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
@@ -16,7 +17,235 @@
 
 <body>
 
+<div data-role="page" id="splash">
+    <div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#hoverMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Options</a>
+    </div>
 
+    <div data-role="popup" id="hoverMenu" data-theme="a" data-history="false">
+        <ul data-role="listview" data-inset="true" style="max-height:180px" data-theme="b">
+            <li data-role="divider" data-theme="a">PenTest Options</li>
+            <li><a href="#newPenTest" data-transition="slideup" data-icon="info">New PenTest</a></li>
+            <li><a href="#penTestByCategory" data-transition="pop" data-icon="info">By Category</a></li>
+            <li><a href="#currentPenTest" data-transition="pop" data-icon="info">XML Demo</a></li>
+            <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+        </ul>
+    </div>
+
+    <div data-role="content" data-theme="d">
+        <div id="cta">
+            <a href="#newPenTest"><img src="images/cta.png" style="min-width:320px;"  alt="cta"></a>
+        </div>
+
+
+    </div>
+</div>
+
+<div data-role="page" id="penTestByCategory">
+
+    <div data-role="header" data-theme="b" data-position="fixed">
+        <a href="#hoverMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Options</a>
+    </div>
+
+    <div data-role="popup" id="hoverMenu" data-theme="a" data-history="false">
+        <ul data-role="listview" data-inset="true" style="min-width:240px;" data-theme="b">
+            <li data-role="divider" data-theme="a">PenTest Options</li>
+            <li><a href="#newPenTest" data-transition="slideup" data-icon="info">New PenTest</a></li>
+            <li><a href="#penTestByCategory" data-transition="pop" data-icon="info">By Category</a></li>
+            <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+        </ul>
+    </div>
+
+    <div data-role="content" data-theme="d">
+        <ul id="browse" data-role="listview" data-inset="true" data-theme="d" data-divider-theme="b">
+            <li data-role="list-divider">PenTest Types:</li>
+            <li id="splashButton"><a href="#penTestDataItems?category=Basic-PenTest"data-transition="slideup" data-icon="info"><h3>Basic-PenTest</h3></a></li>
+            <li id="splashButton"><a href="#penTestDataItems?category=Intermediate-PenTest"data-transition="slideup" data-icon="info"><h3>Intermediate-PenTest</h3></a></li>
+            <li id="splashButton"><a href="#penTestDataItems?category=Advanced-PenTest"data-transition="slideup" data-icon="info"><h3>Advanced-PenTest</h3></a></li>
+        </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-theme="a">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#splash" data-transition="pop" data-icon="home">Splash</a></li>
+                <li><a href="#newPenTest" data-icon="plus">New PenTests</a></li>
+                <li><a href="#penTestByCategory" data-transition="pop" data-icon="info">By Category</a></li>
+                <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div data-role="page" id="currentPenTest" >
+
+    <div data-role="header" data-theme="b">
+        <h1>Show Formats</h1>
+        <a href="#hoverMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Menu</a>
+    </div>
+
+
+    <div data-role="popup" id="hoverMenu" data-theme="a" data-history="false">
+        <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+            <li data-role="divider" data-theme="a">PenTest Options</li>
+            <li><a href="#splash">Splash Screen</a></li>
+            <li><a href="#newPenTest">New PenTest</a></li>
+            <li><a href="#penTestByCategory" data-transition="pop" data-icon="info">By Category</a></li>
+            <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+        </ul>
+    </div>
+
+    <div data-role="content" id="dataDisplayMain">
+        <div data-role="controlgroup" data-type="horizontal" id="dataButtons">
+            <a href="#currentPenTest" data-role="button" id="xml">XML Format</a>
+        </div>
+        <ul data-role="listview" data-inset= ​true id="dataDisplayList">​</ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-theme="a">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#splash" data-transition="pop" data-icon="home">Splash</a></li>
+                <li><a href="#" id="clearData" data-transition="pop" data-icon="minus">Clear Data</a></li>
+                <li><a href="#newPenTest" data-icon="plus">New PenTests</a></li>
+                <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div data-role="page" id="penTestDataItems"
+<div data-role="content">
+
+    <div data-role="header" data-theme="b">
+        <h1></h1>
+        <a href="#hoverMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Menu</a>
+    </div>
+    <div data-role="popup" id="hoverMenu" data-theme="a" data-history="false">
+        <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+            <li data-role="divider" data-theme="a">PenTest Options</li>
+            <li><a href="#splash">Splash Screen</a></li>
+            <li><a href="#currentPenTest">Current PenTest</a></li>
+            <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <div data-role="content" id="localStorageDisplay"></div>
+    <div data-role="footer" data-theme="a">
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a href="#" id="clearData" data-transition="pop" data-icon="minus">Clear Data</a></li>
+                <li><a href="#newPenTest" data-icon="plus">New PenTests</a></li>
+                <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="newPenTest" data-role="page" data-theme="d" data-add-back-btn="true">
+    <div data-role="header" data-theme="b" data-position="fixed">
+
+        <a href="#hoverMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Menu</a>
+    </div>
+    <div data-role="popup" id="hoverMenu" data-theme="a" data-history="false">
+        <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+            <li data-role="divider" data-theme="a">PenTest Options</li>
+            <li><a href="#splash">Splash Screen</a></li>
+            <li><a href="#penTestByCategory" data-transition="pop" data-icon="info">By Category</a></li>
+            <li><a href="#newPenTest">New PenTest</a></li>
+            <li><a href="about.html" data-transition="slideup" data-icon="info">About</a></li>
+        </ul>
+    </div>
+    <div data-role="content" data-theme="b">
+        <form action="#" id="testForm">
+            <ul data-role="listview" data-inset="true">
+                <li data-role="list-divider">PenTest Description</li>
+                    <fieldset>
+                        <div data-role="fieldcontain">
+                            <label for="testID">PenTest ID:*</label><input type="text" id="testID" name="testID" readonly/>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label for="clientID">Client:*</label><input type="text"  id="clientID" name="clientID" class="required" required aria-required="true" placeholder="Client Name"/>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <label for="address">Address:*</label><input type="text"  id="address" name="address" class="required" required aria-required="true" placeholder="1234 Some Street."/>
+                        </div>
+                        <div data-role="fieldcontain" >
+                            <div class='ui-grid-a'>
+                                <div class='ui-block-a' id="clientCity">
+                                    <label for="city">City:*</label><input type="text"  id="city" name="city" class="required" required aria-required="true" placeholder="Washington"/>
+                                </div>
+                                <div class='ui-block-b' id="stateHolder">
+                                    <label for="state">State:*</label><input type="text"  id="state" name="state" class="required" required aria-required="true" placeholder="D.C."/>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-role="fieldcontain" >
+                            <div class='ui-grid-a'>
+                                <div class='ui-block-a' id="clientZip">
+                                    <label for="zipcode">Zip Code:*</label><input type="text"  id="zipcode" name="zipcode" class="required digits" required aria-required="true" placeholder="20755"/>
+                                </div>
+                                <div class='ui-block-b' id="clientPhone">
+                                    <label for="phone">Phone: <span>*</span></label><input type="tel"  id="phone" name="phone" class="required phoneUS" required aria-required="true" placeholder="000-000-0000"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-role="fieldcontain" >
+                            <label for="email">Email:*</label><input type="email"  id="email" name="email" class="required email" required aria-required="true" placeholder="someone@gmail.com"/>
+                        </div>
+                        <div data-role="fieldcontain" >
+                            <label for="penTestDate">PenTest Date:*</label><input type=date id="penTestDate" name="penTestDate" class="required date" placeholder="19760110" required aria-required="true" />
+                        </div>
+                        <div data-role="fieldcontain" >
+                            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                <div role ="heading">Result of Incident?</div>
+                                <label for="yes">Yes</label><input type="radio" value="Yes" id="yes" name="rush" class="radio" />
+                                <label for="no">No</label><input type="radio" value="No" id="no" name="rush" class="radio" checked="checked"/>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+            </ul>
+            <ul data-role="listview" data-inset="true">
+                <li data-role="list-divider">PenTest Specifics</li>
+                <li style="padding:0;border:0;">
+                    <fieldset>
+                        <div data-role="fieldcontain" >
+                            <label for="select-choice-min" class="select">PenTest Complexity: <span>*</span></label>
+                            <select name="select-choice-min" id="penTestList" data-mini="true"  >
+                                <option value="">PenTests Types</option>
+                                <option value="Basic-PenTest">Basic-PenTest</option>
+                                <option value="Intermediate-PenTest">Intermediate-PenTest</option>
+                                <option value="Advanced-PenTest">Advanced-PenTest</option>
+                            </select>
+                        </div>
+                    </fieldset>
+            </ul>
+            <div data-role="footer" data-theme="a">
+                <div data-role="navbar" data-iconpos="top">
+                    <div class='ui-grid-a'>
+                        <div class='ui-block-a'><input type="submit" class="submit" value="Save Job" /></div>
+                        <div class='ui-block-b'><input type="reset" class="reset" value="Reset Form" data-theme="b"/></div>
+                    </div>
+                </div>
+            </div>
+            <br></br>
+        </form>
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-theme="a">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#splash" data-transition="pop" data-icon="home">Splash</a></li>
+                <li><a href="#penTestByCategory" data-transition="pop" data-icon="info">By Category</a></li>
+                <li><a href="about.html" data-transition="pop" data-icon="info">About</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/libs/jquery.validate.min.js"></script>
 <script src="js/json.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
 
