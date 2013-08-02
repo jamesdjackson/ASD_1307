@@ -1,0 +1,10 @@
+{
+  "env": {
+    "local": {
+      "db": "http://127.0.0.1:5984/jobapp"
+    },
+    "cloudant": {
+      "db": "https://adb:aaron23@adb.cloudant.com/jobapp"
+    }
+  }
+}

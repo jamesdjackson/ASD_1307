@@ -1,0 +1,88 @@
+
+label.error{
+	display:block;
+	color:#cc0000;
+	margin-top:10px;
+}
+#errorsLink{
+	display:none;
+}
+div.ui-field-contain.ui-body.ui-br {
+	padding:10px;
+}
+div#cta {
+	width:300px;
+	margin: 0 auto;
+}
+div.ui-content.ui-body-d img {
+	
+	width:300px;
+}
+div#logoAbout {
+	width:200px;
+	margin: 0 auto;
+	padding:0;
+
+}
+div.ui-corner-bottom.ui-content.ui-body-d ul {
+	list-style: none;
+}
+div.ui-corner-bottom.ui-content.ui-body-d li {
+	color:#cc0000;
+	margin-bottom:5px;
+}
+div#search.ui-content.ui-body-d {
+	padding:10px 20px;
+	margin-bottom:-15px;
+}
+
+#mainBtn {
+	height:52px;
+}
+form.ui-listview-filter.ui-bar-c.ui-listview-filter-inset {
+	padding:5px 5px 5px 5px;
+}
+label.ui-input-text span, label.select span{
+	color:#b3b3b3;
+	font-size: 13px;
+}
+.ui-li-has-thumb .ui-btn-inner a.ui-link-inherit, .ui-li-static.ui-li-has-thumb {
+	min-height: 0;
+}
+
+div#cityHolder.ui-block-a, div#stateHolder.ui-block-b, div#zipHolder.ui-block-a, div#phoneHolder.ui-block-b {
+	width:130px;
+}
+div#cityHolder.ui-block-a, div#zipHolder.ui-block-a {
+	margin-right:10px;
+}
+div.ui-header.ui-bar-b img {
+	display:block;
+	margin: 0 auto;
+	padding:2px;
+}
+#open, #all, #closed {
+	width: 100px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+div#dataButtons {
+	width:320px;
+	margin: 0 auto;
+}
+.dividerMargin {
+	float: right;
+	margin-left: 10px;
+	font-weight: normal;
+}
+li#jobDiv {
+	padding: .5em 15px;
+	font-size: 14px;
+}
+div.ui-controlgroup-label span {
+	color:#b3b3b3;
+	font-size: 13px;
+}
+div#itemInfo p {
+	font-size: 15px;
+}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<!--James Jackson-->
+<!--ASD 1306-->
+<!--Project 1-->
+
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>PenTester</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="jquery.mobile-1.3.2.min.css" />
+    <link rel="stylesheet" href="brownTheme.css" />
+    <script src="jquery-1.9.1.min.js"></script>
+    <script src="jquery.mobile-1.3.1.min.js"></script>
+</head>
+	<body>
+		<div id="home" data-role="page" data-theme="d">
+
+			<div data-role="header" data-theme="b" data-position="fixed" id="mainHeader">
+				<img src="cta.png" alt="cta">
+				<a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Nav</a>
+			</div><!-- /header -->
+			<div data-role="popup" id="popupMenu" data-theme="a" data-history="false">
+				<ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+					<li data-role="divider" data-theme="a">Navigation</li>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#addItem">New PenTest</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+			</div>
+			<div data-role="content" data-theme="d">
+				<div id="cta">
+					<a href="#addItem"></a>
+				</div>
+				<ul id="browse" data-role="listview" data-inset="true" data-theme="d" data-divider-theme="b">
+					<li data-role="list-divider">Browse By PenTest Complexity</li>
+					<li id="mainBtn"><a href="#data-items?category=openBasic-PenTest"><h3>Basic PenTest</h3></a></li>
+					<li id="mainBtn"><a href="#data-items?category=openIntermediate-PenTest"><h3>Intermediate PenTest</h3></a></li>
+					<li id="mainBtn"><a href="#data-items?category=openAdvanced-PenTest"><h3>Advanced PenTest</h3></a></li>
+					<li id="mainBtn"><a href="#data-items?category=closedBasic-PenTest"><h3>Closed Basic PenTest</h3></a></li>
+					<li id="mainBtn"><a href="#data-items?category=closedIntermediate-PenTest"><h3>Closed Intermediate PenTest</h3></a></li>
+					<li id="mainBtn"><a href="#data-items?category=closedAdvanced-PenTest"><h3>Closed Advanced PenTest</h3></a></li>
+				</ul>
+			</div>
+
+			<div data-role="footer" data-theme="a">
+				<div data-role="navbar" data-iconpos="top">
+					<ul>
+						<li><a href="#data-items?category=jobs" data-icon="grid">All PenTests</a></li>
+						<li><a href="#addItem" data-icon="plus">New PenTest</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div id="data-items" data-role="page" data-theme="d">
+  			<div data-role="header" data-theme="b">
+  				<h1></h1>
+ 				<a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Nav</a>
+  			</div>
+  			<div data-role="popup" id="popupMenu" data-theme="a" data-history="false">
+				<ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+					<li data-role="divider" data-theme="a">Navigation</li>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#addItem">New PenTest</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+			</div>
+  			<div data-role="content" id="dataDisplayMain">
+  				<div data-role="controlgroup" data-type="horizontal" id="dataButtons">
+					<a href="" data-role="button" data-mini="true" id="all">All</a>
+					<a href="" data-role="button" data-mini="true" data-theme='b' id="open">Open PenTest</a>
+					<a href="" data-role="button" data-mini="true" data-theme='a' id="closed">Closed PenTest</a>
+				</div>	
+				<ul data-role="listview" data-inset="true" id="dataDisplayList">​</ul>
+  			</div>
+  			<div data-role="footer" data-theme="a">
+				<div data-role="navbar" data-iconpos="top">
+					<ul>
+						<li><a href="#data-items?category=jobs" data-icon="grid">All PenTests</a></li>
+						<li><a href="#addItem" data-icon="plus">New PenTest</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="data-item" data-role="page" data-theme="d" >
+  			<div data-role="header" data-theme="b">
+  				<h1></h1>
+ 				<a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Nav</a>
+  			</div>
+  			<div data-role="popup" id="popupMenu" data-theme="a" data-history="false">
+				<ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+					<li data-role="divider" data-theme="a">Navigation</li>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#addItem">New PenTest</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+			</div>
+  			<div data-role="content" id="jobDisplay"></div>
+  			<div data-role="footer" data-theme="a">
+				<div data-role="navbar" data-iconpos="top">
+					<ul>
+						<li><a href="#data-items?category=jobs" data-icon="grid">All PenTests</a></li>
+						<li><a href="#addItem" data-icon="plus">New PenTest</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div id="addItem" data-role="page" data-theme="d" >
+
+			<div data-role="header" data-theme="b" data-position="fixed">
+				<img src="cta-small.png" alt="cta">
+				<a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Nav</a>
+			</div>
+			<div data-role="popup" id="popupMenu" data-theme="a" data-history="false">
+				<ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b">
+					<li data-role="divider" data-theme="a">Navigation</li>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#addItem">New PenTest</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+			</div>
+
+			<div data-role="content" data-theme="d">
+				<form action="#" id="penTestInfo">
+				<ul data-role="listview" data-inset="true">
+    				<li data-role="list-divider">PenTest Info</li>
+    				<li style="padding:0;border:0;">
+					<fieldset>
+						<div data-role="fieldcontain" id="jobContain">
+							<label for="jobnum">PenTest#: <span>readonly</span></label><input type="text" id="jobnum" name="jobnum" readonly/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="company">Company: <span>*</span></label><input type="text"  id="company" name="company" class="required" required aria-required="true" placeholder="Company Name"/>
+						</div>
+						<div data-role="fieldcontain">
+							<label for="address">Address: <span>*</span></label><input type="text"  id="address" name="address" class="required" required aria-required="true" placeholder="123 Test Blvd."/>
+						</div>
+						<div data-role="fieldcontain" >
+							<div class='ui-grid-a'>
+								<div class='ui-block-a' id="cityHolder">
+									<label for="city">City: <span>*</span></label><input type="text"  id="city" name="city" class="required" required aria-required="true" placeholder="Washington"/>
+								</div>
+								<div class='ui-block-b' id="stateHolder">
+									<label for="state">State: <span>*</span></label><input type="text"  id="state" name="state" class="required" required aria-required="true" placeholder="D.C."/>
+								</div>
+							</div>
+						</div>
+						<div data-role="fieldcontain" >
+							<div class='ui-grid-a'>
+								<div class='ui-block-a' id="zipHolder">
+									<label for="zipcode">Zip Code: <span>*</span></label><input type="text"  id="zipcode" name="zipcode" class="required digits" required aria-required="true" placeholder="20715"/>
+								</div>
+								<div class='ui-block-b' id="phoneHolder">
+									<label for="phone">Phone: <span>*</span></label><input type="tel"  id="phone" name="phone" class="required phoneUS" required aria-required="true" placeholder="###-###-####"/>
+								</div>
+							</div>
+						</div>
+						<div data-role="fieldcontain" >
+							<label for="email">Email: <span>*</span></label><input type="email"  id="email" name="email" class="required email" required aria-required="true" placeholder="yourname@gmail.com"/>
+						</div>
+						<div data-role="fieldcontain" >
+							<label for="requestDate">Date Requested: <span>*</span></label><input type="date" id="requestDate" name="requestDate" class="required date" required aria-required="true" />
+						</div>
+						<div data-role="fieldcontain" >
+							<label for="completeByDate">Complete-By Date: <span>*</span></label><input type="date"  id="completeByDate" name="completeByDate" class="required date" required aria-required="true" placeholder="yyyy-mm-dd"/>
+						</div>
+						<div data-role="fieldcontain" >
+							<div class='ui-grid-a'>
+								<div class='ui-block-a'>
+									<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" >
+										<legend>Incident Related? <span>*</span></legend>
+										<label for="yes">Yes</label><input type="radio" value="Yes" id="yes" name="rush" class="radio" />
+										<label for="no">No</label><input type="radio" value="No" id="no" name="rush" class="radio" />
+									</fieldset>
+								</div>
+								<div class='ui-block-b'>
+									<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" >
+										<legend>PenTest Status <span>*</span></legend>
+										<label for="open">Open</label><input type="radio" value=0 id="open" name="status" class="radio" />
+										<label for="closed">Closed</label><input type="radio" value=1 id="closed" name="status" class="radio" />
+									</fieldset>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</ul>
+				<ul data-role="listview" data-inset="true">
+    				<li data-role="list-divider">PenTest Details</li>
+    				<li style="padding:0;border:0;">
+					<fieldset>
+						<div data-role="fieldcontain" >
+							<label for="select-choice-min" class="select">PenTest Complexity <span>*</span></label>
+							<select name="select-choice-min" id="jobTypeList" data-mini="true"  >
+								<option value="">-(PenTest Types)-</option>
+								<option value="Basic PenTest">Basic PenTest</option>
+								<option value="Intermediate PenTest">Intermediate PenTest</option>
+								<option value="Advanced PenTest">Advanced PenTest</option>
+								<option value="Closed Basic PenTest">Closed Basic PenTest</option>
+								<option value="Closed Intermediate PenTest">Closed Intermediate PenTest</option>
+								<option value="Closed Advanced PenTest">Closed Advanced PenTest</option>
+							</select>
+						</div>
+						<div data-role="fieldcontain" id="customContain">
+							<label for="closedAdvanced-PenTest">Additional Info:</label><textarea id="closedAdvanced-PenTest" name="closedAdvanced-PenTest" class="closedAdvanced-PenTest"></textarea>
+						</div>
+						<div data-role="fieldcontain" >
+							<label for="qty">Approx number of Intrusions: <span>*</span></label><input type="number"  id="qty" name="qty" required aria-required="true" placeholder="#"/>
+						</div>
+						<div data-role="fieldcontain" >
+							<label for="mitigationStrategy">Mitigation Strategy: <span>*</span></label><input type="number"  id="mitigationStrategy" name="mitigationStrategy" required aria-required="true" placeholder="#"/>
+						</div>
+						<div data-role="fieldcontain" >
+							<label for="slider-fill">Projected # of Patches Req: </label><input type="range" min="1" max="10" value="1" id="slider-fill" class="slider-fill" name="slider-fill" data-highlight="true" />
+						</div>
+					</fieldset>
+				</ul>
+				<div class='ui-grid-a'>
+					<div class='ui-block-a'><input type="reset" class="reset" value="Reset Form" /></div>
+					<div class='ui-block-b'><input type="submit" class="submit" value="Save Job" data-theme="b"/></div>
+				</div>
+				<a href="#formErrors" id="errorsLink" data-rel="dialog" data-transition="pop">Display Errors</a>
+			</form>
+			</div>
+
+			<div data-role="footer" data-theme="a">
+				<div data-role="navbar" id="addItemNav" data-iconpos="top">
+					<ul>
+						<li><a href="#data-items?category=jobs" data-icon="grid">All PenTests</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="formErrors" data-role="dialog" data-theme="d">
+
+			<div data-role="header" data-theme="b" data-position="fixed">
+				<h1>Missing Entries</h1>
+			</div>
+			<div data-role="content">
+				<ul>
+					<li>Just Checking</li>
+				</ul>
+			</div>
+		</div>
+
+  		<div id="about" data-role="page" data-theme="d">
+  			<div data-role="header" data-theme="b" ><img src="cta-small.png" alt="cta">
+ 				<a href="#popupMenu" data-rel="popup" data-role="button" data-inline="true" class="ui-btn-right">Nav</a>
+  			</div>
+
+                  <div data-role ="collapsible" data-collapsed="true">
+                      <h2>ABOUT THIS APP</h2>
+                      <p>This application is a non-profit, academic endeavor.</p>
+                  </div>
+
+                  <div data-role ="collapsible" data-collapsed =" true">
+                      <h3>MORE ABOUT THE APP</h3>
+                      <p> I never performed any of these penetration tests. </p>
+                      <p> I do not know Bill Gates in real life.</p>
+                      <p> Remember kids, only hack for good!.</p>
+                  </div>
+
+                  <div data-role ="collapsible" id="registrationForm"  data-collapsed="true">
+                      <h4>REGISTER YOUR APP!</h4>
+
+                      <div data-role="fieldcontain">
+                          <input type="tel" name="phoneNumber" placeholder="(000) 000-0000" id="phoneNumber"  />
+                          <label for="phoneNumber">Phone Number</label>
+                      </div>
+
+                      <div data-role="fieldcontain">
+                          <input type="text" name="zipCode" placeholder="20755" id="zipCode"  />
+                          <label for="zipCode">Zip Code</label>
+                      </div>
+
+                      <div data-role="fieldcontain">
+                          <input type="text" name="SSN" placeholder="123-45-6789" id="SSN"  />
+                          <label for="SSN">SSN</label>
+                      </div>
+
+                      <div data-role="fieldcontain">
+                          <input type="email" name="email" placeholder="email@mail.com" id="email"  />
+                          <label for="email">Email</label>
+                      </div>
+
+                      <div data-role="fieldcontain">
+                          <input type="text" name="userName" placeholder="UserName" id="userName"  />
+                          <label for="userName">User Name</label>
+                      </div>
+
+                      <div data-role="fieldcontain">
+                          <input type="password" name="passWord" placeholder="********" id="passWord"  />
+                          <label for="passWord">Password (Alteast 8 Characters)</label>
+                      </div>
+                      <input type="submit" id="submitRegistration" value="Register!"/>
+                  </div>
+
+                  <div data-role="footer" data-position="fixed" data-theme="a">
+                      <div data-role="navbar">
+                          <ul>
+                              <li><a href="https://github.com/jamesdjackson/ASD_1307" data-icon="grid">github</a></li>
+                              <li><a href="index.html" data-icon="home">Home</a></li>
+                              <li><a href =" mailto:jamesdjackson@fullsail.edu" data-icon="star">E-Mail Me</a ></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+
+        <script src="additional-methods.min.js"></script>
+        <script src="jquery.validate.min.js"></script>
+        <script src="main.js" type="text/javascript"></script>
+        <script src="jquery.couch.js" type="text/javascript"></script>
+
+
+		
+	</body>
+</html>
+

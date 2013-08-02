@@ -1,5 +1,5 @@
 
-$('#splash').on('pageinit', function(){
+$('#home').on('pageinit', function(){
 	
 });
 
@@ -19,12 +19,12 @@ $('#data-item').on('pageshow', function(){
 	});
 });
 
-$('#penTestDataItems').on('pageshow', function(){
+$('#data-items').on('pageshow', function(){
 	console.log("data items fired");
 	var typeArr = urlVars("=");
 	var type = typeArr[1];
 	$("#dataButtons").controlgroup('refresh');
-	//Remove events from buttons on pageshow so they do not duplicate between page changes
+
 	$("#all" ).off();
 	$("#closed").off();
 	$("#open").off();
@@ -38,19 +38,19 @@ $('#penTestDataItems').on('pageshow', function(){
 				$('#dataDisplayList').empty();
 				$.each(data.rows, function(index, data) {
 					console.log(data);
-					var status = (data.key[2] === 0) ? "OPEN" : "CLOSED";
+					var status = (data.key[2] === 0) ? "Open PenTest" : "Closed PenTest";
 					var due = (data.key[1]).join("/");
 					var job = data.key[0];
 					var customer = data.value.customer;
 					var qty = data.value.qty;
 					var prodt = data.value.prodt;
-					var theme = (status === "OPEN" ) ? 'b' : 'a';
+					var theme = (status === "Open PenTest" ) ? 'b' : 'a';
 					$(
 						'<li data-role="divider" data-theme=' + theme + ' id="jobDiv">' + 'PenTest#: ' + job  + '<span class="dividerMargin">'+ status + '</span>' + '<span class="dividerMargin">'+ "Due: " + due + '</span>' + '</li>' +
 						'<li>' + '<a href=#data-item?item=' + data.id + '>' +
 						'<p class="ui-li-desc">' + '<strong>' + customer + '</strong>' + '</p>' +
-						'<p class="ui-li-desc">' + "Order Quantity: " + qty + '</p>' +
-						'<p class="ui-li-desc">' + " Est. Production Time: " + prodt + "hrs" + '</p>' +
+						'<p class="ui-li-desc">' + "Approx number of Intrusions: " + qty + '</p>' +
+						'<p class="ui-li-desc">' + "Projected # of Patches Req: " + prodt + '</p>' +
 						'</a></li>'
 						).appendTo('#dataDisplayList');
 				});
@@ -67,19 +67,19 @@ $('#penTestDataItems').on('pageshow', function(){
 				$('#dataDisplayList').empty();
 				$.each(data.rows, function(index, data) {
 					console.log(data);
-					var status = (data.key[0] === 0) ? "OPEN" : "CLOSED";
+					var status = (data.key[0] === 0) ? "Open PenTest" : "Closed PenTest";
 					var due = (data.value.due).join("/");
 					var job = data.key[1];
 					var customer = data.value.customer;
 					var qty = data.value.qty;
 					var prodt = data.value.prodt;
-					var theme = (status === "OPEN" ) ? 'b' : 'a';
+					var theme = (status === "Open PenTest" ) ? 'b' : 'a';
 					$(
 						'<li data-role="divider" data-theme=' + theme + ' id="jobDiv">' + 'PenTest#: ' + job  + '<span class="dividerMargin">'+ status + '</span>' + '<span class="dividerMargin">'+ "Due: " + due + '</span>' + '</li>' +
 						'<li>' + '<a href=#data-item?item=' + data.id + '>' +
 						'<p class="ui-li-desc">' + '<strong>' + customer + '</strong>' + '</p>' +
-						'<p class="ui-li-desc">' + "Order Quantity: " + qty + '</p>' +
-						'<p class="ui-li-desc">' + " Est. Production Time: " + prodt + "hrs" + '</p>' +
+						'<p class="ui-li-desc">' + "Approx number of Intrusions: " + qty + '</p>' +
+						'<p class="ui-li-desc">' + "Projected # of Patches Req: " + prodt + '</p>' +
 						'</a></li>'
 						).appendTo('#dataDisplayList');
 				});
@@ -96,19 +96,19 @@ $('#penTestDataItems').on('pageshow', function(){
 				$('#dataDisplayList').empty();
 				$.each(data.rows, function(index, data) {
 					console.log(data);
-					var status = (data.key[0] === 0) ? "OPEN" : "CLOSED";
+					var status = (data.key[0] === 0) ? "Open PenTest" : "Closed PenTest";
 					var due = (data.value.due).join("/");
 					var job = data.key[1];
 					var customer = data.value.customer;
 					var qty = data.value.qty;
 					var prodt = data.value.prodt;
-					var theme = (status === "OPEN" ) ? 'b' : 'a';
+					var theme = (status === "Open PenTest" ) ? 'b' : 'a';
 					$(
 						'<li data-role="divider" data-theme=' + theme + ' id="jobDiv">' + 'PenTest#: ' + job  + '<span class="dividerMargin">'+ status + '</span>' + '<span class="dividerMargin">'+ "Due: " + due + '</span>' + '</li>' +
 						'<li>' + '<a href=#data-item?item=' + data.id + '>' +
 						'<p class="ui-li-desc">' + '<strong>' + customer + '</strong>' + '</p>' +
-						'<p class="ui-li-desc">' + "Order Quantity: " + qty + '</p>' +
-						'<p class="ui-li-desc">' + " Est. Production Time: " + prodt + "hrs" + '</p>' +
+						'<p class="ui-li-desc">' + "Approx number of Intrusions: " + qty + '</p>' +
+						'<p class="ui-li-desc">' + "Projected # of Patches Req: " + prodt + '</p>' +
 						'</a></li>'
 						).appendTo('#dataDisplayList');
 				});
@@ -122,34 +122,27 @@ $('#penTestDataItems').on('pageshow', function(){
 var urlVars = function(splitVal){
 	var urlData = $.mobile.path.parseUrl(window.location.href);
 	var type = urlData.hash.split(splitVal);
-//	console.log(urlData);
-//	console.log(type);
+
 	return type;
 }
 	
-$('#newPenTest').on('pageinit', function(){
-	// Enables validator debug messages. Used to test the rules: I created.
-	// jQuery.validator.setDefaults({
-	// 	debug: true,
-	// 	success: "valid"
-	// });;
-	// Injects current date as default for incident date on form
+$('#addItem').on('pageinit', function(){
+
 	$('#jobContain').hide();
 	$('input:radio[value="No"]').prop("checked", true).checkboxradio("refresh");
 	$('input:radio[value=0]').prop("checked", true).checkboxradio("refresh");
 	var myDate = new Date();
     var month = myDate.getMonth() + 1;
     var dateVal = myDate.getFullYear() + '-' + month + '-' + myDate.getDate();
-    $("#orderdate").val(dateVal);
-    // Hides or shows custom textarea on select
-    if ($("#extraInfo").val()){
+    $("#requestDate").val(dateVal);
+    if ($("#closedAdvanced-PenTest").val()){
     	$('#customContain').show();
     } else {
     	$('#customContain').hide();
     }
     $('#jobTypeList').change(function() {
 		console.log("fired");
-		if ($("#jobTypeList").val() === "Custom") {
+		if ($("#jobTypeList").val() === "Closed Advanced PenTest") {
 			$('#customContain').show();
 
 		} else {
@@ -158,14 +151,14 @@ $('#newPenTest').on('pageinit', function(){
 		}
 	});
     
-	var myForm = $('#jobForm'),
+	var myForm = $('#penTestInfo'),
 		errorsLink = $("#errorsLink");
 	var validator = myForm.validate({
 		rules: {
 			"select-choice-min" : {
 				required: true,
 			},
-			extraInfo: {
+			closedAdvanced-PenTest: {
 				required: function(element) {
 					return ($("#select-choice-min").val() === "Custom");
 				}
@@ -174,14 +167,14 @@ $('#newPenTest').on('pageinit', function(){
 				required: true,
 				min: 1
 			},
-			production: {
+			mitigationStrategy: {
 				required: true,
 				min: 1
 			}
 		},
 			messages: {
-				qty: { min: jQuery.format("Value greater than or equal to {0}.") },
-				production: { min: jQuery.format("Value greater than or equal to {0}.")}
+				qty: { min: jQuery.format("Must be greater than {0}.")}
+				mitigationStrategy: { min: jQuery.format("Must be greater than {0}.")}
 
 			},
 
@@ -219,7 +212,7 @@ $(document).on( "pagebeforechange", function( e, data ) {
 		// want to handle URLs that request the data for a specific
 		// category.
 		var u = $.mobile.path.parseUrl( data.toPage ),
-			re1 = /^#penTestDataItems/,
+			re1 = /^#data-items/,
 			re2 = /^#data-item/;
 		if ( u.hash.search(re1) !== -1 ) {
 			getCategory( u, data.options );
@@ -245,15 +238,15 @@ var getItem = function ( urlObj, options ){
 	$.couch.db('jobapp').openDoc(jobID, {
 		success: function(data) {
 			console.log(data);
-			var status = (data.JobComplete? === 0) ? "OPEN" : "CLOSED";
+			var status = (data.Status === 0) ? "Open PenTest" : "Closed PenTest";
 			$(		'<div id=itemInfo>' +
-					'<p class="ui-li-aside ui-li-desc">'+ "Due: " + data["Due Date"].join("/") + '</p>' +
+					'<p class="ui-li-aside ui-li-desc">'+ "Due: " + data["Complete-By Date"].join("/") + '</p>' +
 					'<p class="ui-li-desc">' + '<strong>' + data["Company"] + '</strong>' + '</p>' +
-					'<p class="ui-li-desc">' + " Job Type: " + data["Job Type"] + '</p>' +
-					'<p class="ui-li-desc">' + "Order Quantity: " + data["Quantity"] + '</p>' +
-					'<p class="ui-li-desc">' + " Est. Production Time: " + data["Production Hours"] + "hrs" + '</p>' +
-					'<p class="ui-li-desc">' + " PenTest Date: " + (data["PenTest Date"]).join("/") + '</p>' +
-					'<p class="ui-li-desc">' + " JobComplete?: " + status + '</p>' +
+					'<p class="ui-li-desc">' + " PenTest Complexity " + data["Job Type"] + '</p>' +
+					'<p class="ui-li-desc">' + "Approx number of Intrusions: " + data["number of Intrusions"] + '</p>' +
+					'<p class="ui-li-desc">' + " Projected # of Patches Req: " + data["Mitigation Strategy"] + "hrs" + '</p>' +
+					'<p class="ui-li-desc">' + " Date Requested: " + (data["Date Requested"]).join("/") + '</p>' +
+					'<p class="ui-li-desc">' + " Status: " + status + '</p>' +
 					'</div>'
 				).appendTo('#jobDisplay');
 			$('#jobDisplay').find('#itemInfo');
@@ -272,11 +265,11 @@ var getItem = function ( urlObj, options ){
 var getCategory = function( urlObj, options ){
 	var categoryName = urlObj.hash.replace( /.*category=/, "" ),
 		pageSelector = urlObj.hash.replace( /\?.*$/, "" ),
-		// Get the page we are going to dump our content into
+
 		$page = $( pageSelector ),
-		// Get the header for the page.
+
 		$header = $page.children( ":jqmData(role=header)" )
-		// Get the content area element for the page.
+
 		$content = $page.children( ":jqmData(role=content)" );
 		
 		console.log("cat: " + categoryName);
@@ -289,21 +282,21 @@ var getCategory = function( urlObj, options ){
 			$('#dataDisplayList').empty();
 			$.each(data.rows, function(index, data) {
 				console.log(data);
-				var status = (data.key[2] === 0) ? "OPEN" : "CLOSED";
+				var status = (data.key[2] === 0) ? "Open PenTest" : "Closed PenTest";
 				var due = (data.key[1]).join("/");
 				var job = data.key[0];
 				var customer = data.value.customer;
 				var qty = data.value.qty;
 				var prodt = data.value.prodt;
-				var theme = (status === "OPEN" ) ? 'b' : 'a';
+				var theme = (status === "Open PenTest" ) ? 'b' : 'a';
 				$(
 					'<li data-role="divider" id="jobDiv">' + 'PenTest#: ' + job  + '<span class="dividerMargin">'+ status + '</span>' + '<span class="dividerMargin">'+ "Due: " + due + '</span>' + '</li>'
 				).appendTo('#dataDisplayList').attr('data-theme', theme);
 				$(
 					'<li><a href=#data-item?item=' + data.id + '>' +
 					'<p class="ui-li-desc">' + '<strong>' + customer + '</strong>' + '</p>' +
-					'<p class="ui-li-desc">' + "Order Quantity: " + qty + '</p>' +
-					'<p class="ui-li-desc">' + " Est. Production Time: " + prodt + "hrs" + '</p>' +
+					'<p class="ui-li-desc">' + "Approx number of Intrusions: " + qty + '</p>' +
+					'<p class="ui-li-desc">' + " Projected # of Patches Req: " + prodt + "hrs" + '</p>' +
 					'</a></li>'
 				).appendTo('#dataDisplayList');
 			});
@@ -312,42 +305,27 @@ var getCategory = function( urlObj, options ){
 	});
 	
 	if(categoryName === "jobs"){
-//		$("#all").hide();
-		$("#penTestDataItems").find("h1").html("All Jobs");
+		$("#data-items").find("h1").html("All PenTests");
 	}else {
 		$("#all").show();
 		var type = categoryName;
 		var typeSplit = type.split("");
 		typeSplit[0] = typeSplit[0].toUpperCase();
 		var typeLower = typeSplit.join("");
-		$("#penTestDataItems").find("h1").html( typeLower + " Jobs");
+		$("#data-items").find("h1").html( typeLower + " Jobs");
 	}
-		// Pages are lazily enhanced. We call page() on the page
-		// element to make sure it is always enhanced before we
-		// attempt to enhance the listview markup we just injected.
-		// Subsequent calls to page() are ignored since a page/widget
-		// can only be enhanced once.
 		$page.page();
-		// Enhance what we just injected.
 		$content.find( ":jqmData(role=collapsible-set)" ).collapsibleset();
 		$content.find( ":jqmData(role=listview)" ).listview();
 		$content.find( ":jqmData(role=button)" ).button();
 		$content.find( ":jqmData(role=controlgroup)" ).controlgroup();
-		
-		// We don't want the data-url of the page we just modified
-		// to be the url that shows up in the browser's location field,
-		// so set the dataUrl option to the URL for the category
-		// we just loaded.
 		options.dataUrl = urlObj.href;
-
-		// Now call changePage() and tell it to switch to
-		// the page we just modified.
 		$.mobile.changePage( $page, options );
 
 };
-// Function saves the document provided by docCreate()
+
 var docSave = function (doc){
-	$.couch.db("jobapp").saveDoc(doc, {
+	$.couch.db("pentester2").saveDoc(doc, {
 		success: function(data) {
 			console.log(data);
 		},
@@ -356,7 +334,7 @@ var docSave = function (doc){
 		}
 	});
 }
-// Function inserts data into a new document object and returns it to docCreate()
+
 var docInsert = function (id,rev,nextJobNum,formData){
 	var doc = {};
 		if(id === 0 && rev === 0){
@@ -364,15 +342,14 @@ var docInsert = function (id,rev,nextJobNum,formData){
 			var typeSplit = type.split("");
 			typeSplit[0] = typeSplit[0].toLowerCase();
 			var typeLower = typeSplit.join("");
-			// New document 
-			var incident = (formData[8].value).split('-');
-			for(var i=0; i < incident.length; i++) { incident[i] = +incident[i]; }
+			var order = (formData[8].value).split('-');
+			for(var i=0; i < order.length; i++) { order[i] = +order[i]; } 
 			var due = (formData[9].value).split('-');
 			for(var n=0; n < due.length; n++) { due[n] = +due[n]; }
-			var testType = formData[12].value;
+			var jobType = formData[12].value;
 			doc._id = "job:"+ typeLower + ":" + nextJobNum;
-			doc["Job Number"] = nextJobNum;
-			doc.JobComplete? = Number(formData[11].value);
+			doc["PenTest Number"] = nextJobNum;
+			doc.Status = Number(formData[11].value);
 			doc.Company = formData[1].value;
 			doc.Address = formData[2].value;
 			doc.City = formData[3].value;
@@ -380,49 +357,48 @@ var docInsert = function (id,rev,nextJobNum,formData){
 			doc.Zipcode = Number(formData[5].value);
 			doc.Phone = formData[6].value;
 			doc.Email = formData[7].value;
-			doc["Order Date"] = incident;
-			doc["Due Date"] = due;
+			doc["Order Date"] = order;
+			doc["Complete-By Date"] = due;
 			doc["Rush Order"] = formData[10].value;
 			doc["Job Type"] = formData[12].value;
-			doc["Custom Info"] = formData[13].value;
-			doc.Quantity = Number(formData[14].value);
-			doc["Production Hours"] = Number(formData[15].value);
+			doc["Additional Info"] = formData[13].value;
+			doc.number of Intrusions = Number(formData[14].value);
+			doc["Mitigation Strategy"] = Number(formData[15].value);
 			doc["Design Effort"] = Number(formData[16].value);
 		} else {
-			// Editing existing document
-			var incident = ($("#orderdate").val()).split('-');
-			for(var i=0; i < incident.length; i++) { incident[i] = +incident[i]; }
+			var order = ($("#requestDate").val()).split('-');
+			for(var i=0; i < order.length; i++) { order[i] = +order[i]; } 
 			var due = ($("#completeByDate").val()).split('-');
 			for(var n=0; n < due.length; n++) { due[n] = +due[n]; }
-			var testType = $("#jobTypeList").val();
+			var jobType = $("#jobTypeList").val();
 			doc._id = id;
 			doc._rev = rev;
-			doc["Job Number"] = Number($("#PenTestNum").val());
-			doc.JobComplete? = Number($('input:radio[name=status]:checked').val());
-			doc.Company = $("#company").val();
+			doc["PenTest Number"] = Number($("#jobnum").val());
+			doc.Status = Number($('input:radio[name=status]:checked').val());
+			doc.Company = $("#client").val();
 			doc.Address = $("#address").val();
 			doc.City = $("#city").val();
 			doc.State = $("#state").val();
 			doc.Zipcode = Number($("#zipcode").val());
 			doc.Phone = $("#phone").val();
 			doc.Email = $("#email").val();
-			doc["PenTest Date"] = incident;
-			doc["Complete By Date"] = due;
-			doc["Incident Related?"] = $('input:radio[name=incident]:checked').val();
-			doc["Job Type"] = testType;
-			doc["Custom Info"] = $("#extraInfo").val();
-			doc.Quantity = Number($("#qty").val());
-			doc["Production Hours"] = Number($("#production").val());
+			doc["Order Date"] = order;
+			doc["Complete-By Date"] = due;
+			doc["Rush Order"] = $('input:radio[name=rush]:checked').val();
+			doc["Job Type"] = jobType;
+			doc["Additional Info"] = $("#Additional Info").val();
+			doc.number of Intrusions = Number($("#qty").val());
+			doc["Mitigation Strategy"] = Number($("#mitigationStrategy").val());
 			doc["Design Effort"] = Number($("#slider-fill").val());
 		}
 	return doc;		
 };
-// Initializes the save document process 
+
 var docCreate = function(formData){
 	console.log("Start docCreate");
 	console.log(formData);
 	var docIdArr = urlVars("_");
-	if (docIdArr[0] === "#newPenTest"){
+	if (docIdArr[0] === "#addItem"){
 		$.couch.db('jobapp').view('app/all-jobs', {
 			success: function(data) {
 //				console.log(data);
@@ -450,7 +426,7 @@ var docCreate = function(formData){
 };
 
 var	deleteItem = function (docId){
-	$.couch.db("jobapp").openDoc(docId, {
+	$.couch.db("pentester2").openDoc(docId, {
 		success: function(data) {
 			var re = /.*:/
 			rev = data._rev
@@ -458,7 +434,7 @@ var	deleteItem = function (docId){
 			var doc = {"_id": data._id, "_rev": data._rev};
 			var ask = confirm("Are you sure you want to delete job #:" + jobNum + " ?");
 			if(ask){
-				$.couch.db("jobapp").removeDoc(doc, {
+				$.couch.db("pentester2").removeDoc(doc, {
 					success: function(data) {
 						console.log(data);
 						var begin = (data.id).indexOf(':') + 1;
@@ -467,7 +443,7 @@ var	deleteItem = function (docId){
 						var typeSplit = type.split("");
 						typeSplit[0] = typeSplit[0].toLowerCase();
 						var typeUrl = typeSplit.join("");
-						$.mobile.changePage("#penTestDataItems?category=" + typeUrl);
+						$.mobile.changePage("#data-items?category=" + typeUrl);
 					}
 				});
 			} else{
@@ -479,7 +455,7 @@ var	deleteItem = function (docId){
 
 var editItem = function (docId){
 	console.log(docId);
-	$.couch.db("jobapp").openDoc(docId , {
+	$.couch.db("pentester2").openDoc(docId , {
 		success: function(data) {
 			console.log(data);
 			var rev = data._rev;
@@ -488,22 +464,22 @@ var editItem = function (docId){
 			var jobNum = (data._id).replace(re, "");
 			var doc = {"_id": data._id, "_rev": data._rev}; 
 			console.log(jobNum);
-			$.mobile.changePage( "#newPenTest", {dataUrl: data._id + "_" + data._rev} );
+			$.mobile.changePage( "#addItem", {dataUrl: data._id + "_" + data._rev} );
 			$('#jobContain').show();
-			$("#PenTestNum").val(jobNum);
-			$("#company").val(data.Company);
+			$("#jobnum").val(jobNum);
+			$("#client").val(data.Company);
 			$("#address").val(data.Address);
 			$("#city").val(data.City);
 			$("#state").val(data.State);
 			$("#zipcode").val(data.Zipcode);
 			$("#phone").val(data.Phone);
 			$("#email").val(data.Email);
-			$("#orderdate").val((data["Order Date"]).join("-"));
-			$("#completeByDate").val((data["Complete By Date"]).join("-"));
+			$("#requestDate").val((data["Date Requested"]).join("-"));
+			$("#completeByDate").val((data["Complete-By Date"]).join("-"));
 			$("#jobTypeList").val(data["Job Type"]);
-			$("#extraInfo").val(data["Custom Info"]);
-			$("#qty").val(data.Quantity);
-			$("#production").val(data["Production Hours"]);
+			$("#custom").val(data["Additional Info"]);
+			$("#qty").val(data.number of Intrusions);
+			$("#mitigationStrategy").val(data["Mitigation Strategy"]);
 			$("#slider-fill").val(data["Design Effort"]);
 			$('select').selectmenu('refresh', true);
 			if(data["Rush Order"] === "Yes"){
@@ -513,7 +489,7 @@ var editItem = function (docId){
 				$('input:radio[value="Yes"]').prop("checked", false).checkboxradio("refresh");
 				$('input:radio[value="No"]').prop("checked", true).checkboxradio("refresh");
 			}
-			if(data.JobComplete? === 0){
+			if(data.Status === 0){
 				$('input:radio[value=0]').prop("checked", true).checkboxradio("refresh");
 				$('input:radio[value=1]').prop("checked", false).checkboxradio("refresh");
 			} else {
@@ -525,7 +501,6 @@ var editItem = function (docId){
 	});
 };
 
-// Function I wrote to mimic my json data from a CSV file - returns an object of objects in this case
 var csvToObject = function(data){
 		var obj = {};
 		var values = [];
