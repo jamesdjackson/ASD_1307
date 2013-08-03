@@ -1,4 +1,3 @@
-
 $('#home').on('pageinit', function(){
 	
 });
@@ -61,7 +60,7 @@ $('#data-items').on('pageshow', function(){
 	});
 	$("#closed").on('click', function(){
 		console.log("Display closed");
-		$.couch.db('jobapp').view('app/all-' + type + '-status?startkey=[1,0]&endkey=[1,{}]' , {
+		$.couch.db('pentester2').view('app/all-' + type + '-status?startkey=[1,0]&endkey=[1,{}]' , {
 			success: function(data) {
 				console.log(data);
 				$('#dataDisplayList').empty();
@@ -90,7 +89,7 @@ $('#data-items').on('pageshow', function(){
 	});
 	$("#open").on('click', function(){
 		console.log("Display open");
-		$.couch.db('jobapp').view('app/all-' + type + '-status?startkey=[0,0]&endkey=[0,{}]', {
+		$.couch.db('pentester2').view('app/all-' + type + '-status?startkey=[0,0]&endkey=[0,{}]', {
 			success: function(data) {
 				console.log(data);
 				$('#dataDisplayList').empty();
@@ -179,7 +178,6 @@ $('#addItem').on('pageinit', function(){
 			},
 
 		invalidHandler: function(form, validator) {
-//			errorsLink.click();
 			var html = "";
 			for(var key in validator.submitted){
 				var label = $('label[for^="'+ key +'"]').not("[generated]");
@@ -203,15 +201,11 @@ $('#addItem').on('pageinit', function(){
 
 });
 
-// Listen for the page change events
+
 $(document).on( "pagebeforechange", function( e, data ) {
-	// We only want to handle changePage() calls where the caller is
-	// asking us to load a page by URL.
+
 	if ( typeof data.toPage === "string" ) {
-		// We are being asked to load a page by URL, but we only
-		// want to handle URLs that request the data for a specific
-		// category.
-		var u = $.mobile.path.parseUrl( data.toPage ),
+			var u = $.mobile.path.parseUrl( data.toPage ),
 			re1 = /^#data-items/,
 			re2 = /^#data-item/;
 		if ( u.hash.search(re1) !== -1 ) {
@@ -399,9 +393,8 @@ var docCreate = function(formData){
 	console.log(formData);
 	var docIdArr = urlVars("_");
 	if (docIdArr[0] === "#addItem"){
-		$.couch.db('jobapp').view('app/all-jobs', {
+		$.couch.db('pentester2').view('app/all-pentests', {
 			success: function(data) {
-//				console.log(data);
 				var lastIndex = data.total_rows - 1;
 				nextJobNum = data.rows[lastIndex].key[0] + 1;
 				console.log(nextJobNum);
@@ -506,35 +499,33 @@ var csvToObject = function(data){
 		var values = [];
 
 		var rows = data.split('\r');
-		// console.log(rows);
-
+	
 		var keys = rows[0].split(';');
-		// console.log(keys);
 
 		for(var l=1, m=rows.length; l<m;l++){
 			values.push(rows[l].split(';'));
 		}
-		// console.log(values);
+		
 
-		re = /\,(\w|\w)/; // Test for , separator for sub array
+		re = /\,(\w|\w)/; 
 		for(var i=0, j=values.length; i<j;i++){
-			// console.log(values[i]);
+			
 			var newObj = {};
 			for(var k=0, l=values[i].length; k<l; k++){
-				// console.log(values[i][k]);
+				
 				if(re.test(values[i][k]) ){
-					// console.log(values[i][k] + ' : ' + re.test(values[i][k]));
+					
 					var subArr = values[i][k].split(',');
-					// console.log(subArr);
+					
 					values[i][k] = subArr;
-					// console.log(values[i]);
+					
 				}
 				newObj[keys[k]] = values[i][k];
 			}
 			var key = values[i][0];
 			obj[key] = newObj;
 		}
-		// console.log(values);
-		// console.log(obj);
+		
+	
 		return obj;
 };;
